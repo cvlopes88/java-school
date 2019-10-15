@@ -84,8 +84,9 @@ public class StudentController
             @RequestBody
                     Student updateStudent,
             @PathVariable
-                    long Studentid)
+                    long Studentid, HttpServletRequest request)
     {
+        logger.info(request.getMethod() + " " + request.getRequestURI() + " " + "accessed at" +" "+ new Date() );
         studentService.update(updateStudent, Studentid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -94,8 +95,9 @@ public class StudentController
     @DeleteMapping("/Student/{Studentid}")
     public ResponseEntity<?> deleteStudentById(
             @PathVariable
-                    long Studentid)
+                    long Studentid, HttpServletRequest request)
     {
+        logger.info(request.getMethod() + " " + request.getRequestURI() + " " + "student deleted  at" +" "+ new Date() );
         studentService.delete(Studentid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
